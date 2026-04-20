@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --sidebar-w: 260px;
+  --radius: 12px;
+  --transition: 0.2s ease;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body { background: #f0f2f8; }
+html.dark body { background: #0e1117; }
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 99px; }
+
+/* ── Animations ────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in   { animation: fadeIn 0.4s ease both; }
+.animate-slide-left { animation: slideInLeft 0.3s ease both; }
+.animate-count-up  { animation: count-up 0.5s ease both; }
+
+/* ── Glass card ─────────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+html.dark .glass {
+  background: rgba(30,32,48,0.7);
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* ── Gradient text ──────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Custom table ───────────────────────────────────────── */
+.data-table th {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 0.85rem 1rem;
+  font-size: 0.88rem;
+  border-top: 1px solid rgba(99,102,241,0.08);
+}
+html.dark .data-table td { border-color: rgba(255,255,255,0.05); }
+
+/* ── Status badges ──────────────────────────────────────── */
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 99px; font-size: 0.72rem; font-weight: 600; }
+.badge-active { background: #d1fae5; color: #065f46; }
+.badge-inactive { background: #fee2e2; color: #991b1b; }
+.badge-on_leave { background: #fef3c7; color: #92400e; }
+.badge-pending  { background: #ede9fe; color: #5b21b6; }
+.badge-approved { background: #d1fae5; color: #065f46; }
+.badge-rejected { background: #fee2e2; color: #991b1b; }
+.badge-paid    { background: #d1fae5; color: #065f46; }
+.badge-draft   { background: #f3f4f6; color: #4b5563; }
+html.dark .badge-draft { background: #374151; color: #d1d5db; }
+
+/* ── Toast ──────────────────────────────────────────────── */
+.toast-container {
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+}
+
+/* ── Modal ──────────────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+}
+.modal-box {
+  width: 100%; max-width: 600px;
+  max-height: 90vh; overflow-y: auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+  animation: fadeIn 0.25s ease;
+}
+html.dark .modal-box { background: #1a1d2e; }
+
+/* ── Input ──────────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 0.9rem;
+  transition: border var(--transition), box-shadow var(--transition);
+  outline: none;
+  color: #111827;
+}
+.input-field:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.12); }
+html.dark .input-field { background: #1e2130; border-color: #374151; color: #f9fafb; }
+html.dark .input-field:focus { border-color: #818cf8; }
+
+/* ── Button variants ────────────────────────────────────── */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 10px; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all var(--transition); border: none; outline: none; }
+.btn-primary { background: linear-gradient(135deg, #6366f1, #818cf8); color: #fff; box-shadow: 0 4px 12px rgba(99,102,241,0.35); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(99,102,241,0.45); }
+.btn-secondary { background: #f3f4f6; color: #374151; }
+html.dark .btn-secondary { background: #374151; color: #f9fafb; }
+.btn-secondary:hover { background: #e5e7eb; }
+html.dark .btn-secondary:hover { background: #4b5563; }
+.btn-danger { background: linear-gradient(135deg, #ef4444, #f87171); color: #fff; box-shadow: 0 4px 12px rgba(239,68,68,0.3); }
+.btn-danger:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(239,68,68,0.4); }
+.btn-success { background: linear-gradient(135deg, #10b981, #34d399); color: #fff; box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+.btn-success:hover { transform: translateY(-1px); }
+.btn-sm { padding: 6px 12px; font-size: 0.8rem; border-radius: 8px; }
+.btn-icon { padding: 8px; border-radius: 8px; }
+
+@media (max-width: 767px) {
+  .data-table {
+    min-width: 720px;
+  }
+
+  .data-table th {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.68rem;
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 10px;
+  }
+
+  .modal-box {
+    max-height: 88vh;
+    border-radius: 18px;
+  }
+
+  .btn {
+    min-height: 40px;
+    justify-content: center;
+  }
+
+  .toast-container {
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-field {
+    font-size: 0.85rem;
+    padding: 9px 12px;
+  }
+
+  .badge {
+    padding-inline: 8px;
+  }
+}
