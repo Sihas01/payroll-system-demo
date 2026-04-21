@@ -45,10 +45,50 @@ html.dark body { background: #0e1117; }
   from { opacity: 0; transform: scale(0.8); }
   to   { opacity: 1; transform: scale(1); }
 }
+@keyframes landing-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
 
 .animate-fade-in   { animation: fadeIn 0.4s ease both; }
 .animate-slide-left { animation: slideInLeft 0.3s ease both; }
 .animate-count-up  { animation: count-up 0.5s ease both; }
+.landing-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(2px);
+  will-change: opacity, transform, filter;
+}
+.landing-reveal.is-visible {
+  animation: landing-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.landing-delay-1 { animation-delay: 80ms; }
+.landing-delay-2 { animation-delay: 160ms; }
+.landing-delay-3 { animation-delay: 240ms; }
+.landing-delay-4 { animation-delay: 320ms; }
+.landing-delay-5 { animation-delay: 420ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    will-change: auto;
+  }
+
+  .landing-reveal.is-visible {
+    animation: none;
+  }
+}
 
 /* ── Glass card ─────────────────────────────────────────── */
 .glass {
@@ -153,6 +193,12 @@ html.dark .btn-secondary:hover { background: #4b5563; }
 .btn-icon { padding: 8px; border-radius: 8px; }
 
 @media (max-width: 767px) {
+  main > section:not(:first-of-type) [class*="shadow-["],
+  main > section:not(:first-of-type) .shadow-lg,
+  main > section:not(:first-of-type) .shadow-xl {
+    box-shadow: 0 8px 24px rgba(76, 69, 132, 0.055) !important;
+  }
+
   .data-table {
     min-width: 720px;
   }
