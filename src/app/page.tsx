@@ -183,7 +183,7 @@ export default function LandingPage() {
         </nav>
       </header>
 
-      <section className="landing-reveal relative z-10 overflow-hidden bg-white pb-2 pt-20 sm:pb-20 sm:pt-24">
+      <section className="landing-reveal relative z-10 overflow-hidden bg-transparent pb-2 pt-20 sm:pb-20 sm:pt-24">
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
           <div className="landing-reveal mx-auto mb-5 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-violet-600">
             <Sparkles size={13} />
@@ -207,7 +207,7 @@ export default function LandingPage() {
         <HeroDashboardImage />
       </section>
 
-      <section id="product" className="landing-reveal relative z-10 bg-white pb-2 pt-16 sm:bg-transparent sm:pb-6 sm:pt-24">
+      <section id="product" className="landing-reveal relative z-10 bg-transparent pb-2 pt-16 sm:pb-6 sm:pt-24">
         <div className="mx-auto grid max-w-5xl items-start gap-12 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr]">
           <div className="landing-reveal order-1 text-center sm:text-left">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-violet-600">What this system is</p>
