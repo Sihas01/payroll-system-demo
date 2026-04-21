@@ -15,10 +15,6 @@ const LEAVE_TYPES: { value: LeaveType; label: string; color: string }[] = [
   { value: 'unpaid',  label: 'Unpaid Leave',  color: 'text-slate-500 bg-slate-100' },
 ];
 
-const LEAVE_BALANCE: Record<LeaveType, number> = {
-  annual: 14, sick: 7, casual: 5, unpaid: 0,
-};
-
 export default function LeavePage() {
   const { currentUser, employees, leaveRequests, applyLeave, updateLeaveStatus, darkMode , hydrated } = useStore();
   const router = useRouter();
@@ -37,6 +33,22 @@ export default function LeavePage() {
       (!filterStatus || l.status === filterStatus) &&
       (!filterType || l.type === filterType)
     ), [leaveRequests, filterStatus, filterType]);
+
+  const organizationLeaveStats = useMemo(() => {
+    const totalRequests = leaveRequests.length;
+
+    return LEAVE_TYPES.map(type => {
+      const requests = leaveRequests.filter(l => l.type === type.value);
+      return {
+        ...type,
+        total: requests.length,
+        approved: requests.filter(l => l.status === 'approved').length,
+        pending: requests.filter(l => l.status === 'pending').length,
+        rejected: requests.filter(l => l.status === 'rejected').length,
+        pct: totalRequests > 0 ? (requests.length / totalRequests) * 100 : 0,
+      };
+    });
+  }, [leaveRequests]);
 
   const empName = (id: string) => employees.find(e => e.id === id)?.name ?? id;
   const empDept = (id: string) => {
@@ -103,26 +115,28 @@ export default function LeavePage() {
         ))}
       </div>
 
-      {/* Leave Balance Cards */}
+      {/* Organization Leave Cards */}
       <div className={clsx(card, 'mb-6')}>
-        <h3 className={clsx('font-semibold text-sm mb-4', darkMode ? 'text-white' : 'text-slate-800')}>Your Leave Balance</h3>
+        <div className="mb-4">
+          <h3 className={clsx('font-semibold text-sm', darkMode ? 'text-white' : 'text-slate-800')}>Organization Leave Overview</h3>
+          <p className={clsx('mt-1 text-xs', darkMode ? 'text-white/45' : 'text-slate-400')}>All employee leave requests grouped by type</p>
+        </div>
         <div className="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-4 gap-3">
-          {LEAVE_TYPES.map(({ value, label, color }) => {
-            const used = leaveRequests.filter(l => l.type === value && l.status === 'approved').length;
-            const total = LEAVE_BALANCE[value];
-            const remaining = Math.max(0, total - used);
-            const pct = total > 0 ? (remaining / total) * 100 : 0;
-            return (
-              <div key={value} className={clsx('rounded-xl p-3.5', darkMode ? 'bg-white/5' : 'bg-slate-50 border border-slate-100')}>
-                <span className={clsx('badge text-[10px] mb-2', color)}>{label}</span>
-                <div className={clsx('text-2xl font-extrabold', darkMode ? 'text-white' : 'text-slate-800')}>{remaining}<span className="text-sm font-medium text-slate-400">/{total}</span></div>
-                <div className="mt-2 h-1.5 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden">
-                  <div className="h-full rounded-full bg-indigo-500 transition-all" style={{ width: `${pct}%` }} />
-                </div>
-                <p className="text-[10px] text-slate-400 mt-1">days remaining</p>
+          {organizationLeaveStats.map(({ value, label, color, total, approved, pending, rejected, pct }) => (
+            <div key={value} className={clsx('rounded-xl p-3.5', darkMode ? 'bg-white/5' : 'bg-slate-50 border border-slate-100')}>
+              <span className={clsx('badge text-[10px] mb-2', color)}>{label}</span>
+              <div className={clsx('text-2xl font-extrabold', darkMode ? 'text-white' : 'text-slate-800')}>{total}</div>
+              <div className="mt-2 h-1.5 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden">
+                <div className="h-full rounded-full bg-indigo-500 transition-all" style={{ width: `${pct}%` }} />
               </div>
-            );
-          })}
+              <p className="text-[10px] text-slate-400 mt-1">organization requests</p>
+              <div className={clsx('mt-3 grid grid-cols-3 gap-1 text-[10px]', darkMode ? 'text-white/50' : 'text-slate-500')}>
+                <span><strong className={darkMode ? 'text-white' : 'text-slate-700'}>{approved}</strong> approved</span>
+                <span><strong className={darkMode ? 'text-white' : 'text-slate-700'}>{pending}</strong> pending</span>
+                <span><strong className={darkMode ? 'text-white' : 'text-slate-700'}>{rejected}</strong> rejected</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
