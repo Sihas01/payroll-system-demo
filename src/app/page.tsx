@@ -141,7 +141,7 @@ function HeroDashboardImage() {
       <div className="landing-reveal landing-delay-5 mx-auto mt-14 hidden w-full max-w-6xl px-4 sm:block">
         <div className="rounded-[1.4rem] border border-slate-200/80 bg-white p-2 shadow-[0_30px_80px_rgba(76,69,132,0.14)]">
           <Image
-            src="/dashboard-light.png"
+            src="/dashboard-white-new.png"
             alt="PayrollPro dashboard showing payroll KPIs, charts, department split, quick actions, and recent activity"
             width={1920}
             height={945}
