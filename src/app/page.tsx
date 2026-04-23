@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { LucideIcon } from 'lucide-react';
+import DemoInquiryDialog from '@/components/DemoInquiryDialog';
 import LandingRevealObserver from '@/components/LandingRevealObserver';
 import {
   ArrowRight,
@@ -10,7 +11,6 @@ import {
   Building2,
   CalendarCheck,
   Check,
-  ChevronRight,
   Clock,
   FileCheck2,
   Play,
@@ -139,7 +139,7 @@ function HeroDashboardImage() {
       </div>
 
       <div className="landing-reveal landing-delay-5 mx-auto mt-14 hidden w-full max-w-6xl px-4 sm:block">
-        <div className="rounded-[1.4rem] border border-slate-200/80 bg-white p-2 shadow-[0_30px_80px_rgba(76,69,132,0.14)]">
+        <div className="rounded-[1.4rem] border border-slate-200/80 bg-white p-2">
           <Image
             src="/dashboard-white-new.png"
             alt="PayrollPro dashboard showing payroll KPIs, charts, department split, quick actions, and recent activity"
@@ -159,8 +159,8 @@ export default function LandingPage() {
     <main className="relative isolate min-h-screen overflow-hidden bg-white text-slate-950">
       <LandingRevealObserver />
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute -left-[14vw] -top-[18vh] h-[56vh] w-[56vw] rounded-[45%_55%_62%_38%/44%_42%_58%_56%] bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.22)_0%,rgba(124,58,237,0.13)_34%,rgba(124,58,237,0.045)_56%,transparent_76%)] blur-3xl" />
-        <div className="absolute -bottom-[20vh] -right-[14vw] h-[60vh] w-[56vw] rounded-[58%_42%_48%_52%/52%_46%_54%_48%] bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.2)_0%,rgba(124,58,237,0.12)_36%,rgba(124,58,237,0.042)_58%,transparent_78%)] blur-3xl" />
+        <div className="absolute -left-[14vw] -top-[18vh] h-[56vh] w-[56vw] rounded-[45%_55%_62%_38%/44%_42%_58%_56%] bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.22)_0%,rgba(124,58,237,0.13)_34%,rgba(124,58,237,0.045)_56%,transparent_76%)] blur-3xl sm:top-1/2 sm:-translate-y-1/2" />
+        <div className="absolute -right-[14vw] -top-[16vh] h-[60vh] w-[56vw] rounded-[58%_42%_48%_52%/52%_46%_54%_48%] bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.2)_0%,rgba(124,58,237,0.12)_36%,rgba(124,58,237,0.042)_58%,transparent_78%)] blur-3xl sm:top-1/2 sm:-translate-y-1/2" />
       </div>
       <header className="sticky top-0 z-50 border-b border-slate-100/80 bg-white/85 backdrop-blur-xl">
         <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -177,13 +177,13 @@ export default function LandingPage() {
               </a>
             ))}
           </div>
-          <Link href="/login" className="landing-reveal landing-delay-2 inline-flex min-h-9 items-center rounded-full bg-violet-600 px-4 text-[13px] font-bold text-white shadow-lg shadow-violet-500/20 transition hover:-translate-y-0.5">
+          <Link href="/login" className="landing-reveal landing-delay-2 inline-flex min-h-9 items-center rounded-full bg-violet-600 px-4 text-[13px] font-bold text-white shadow-[0_8px_18px_rgba(124,58,237,0.12)] transition hover:-translate-y-0.5">
             Try demo
           </Link>
         </nav>
       </header>
 
-      <section className="landing-reveal relative z-10 overflow-hidden bg-transparent pb-2 pt-20 sm:pb-20 sm:pt-24">
+      <section className="landing-reveal relative z-10 overflow-hidden bg-transparent pt-20 sm:pt-24">
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
           <div className="landing-reveal mx-auto mb-5 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-violet-600">
             <Sparkles size={13} />
@@ -196,10 +196,10 @@ export default function LandingPage() {
             PayrollPro brings employee records, attendance, leave approvals, salary runs, payslips, and reporting into one calm system built for HR and finance teams.
           </p>
           <div className="landing-reveal landing-delay-3 mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="#product" className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-5 text-sm font-bold text-slate-700 shadow-sm transition hover:border-violet-200 hover:text-violet-600">
+            <a href="#product" className="inline-flex min-h-11 w-48 items-center justify-center rounded-full border border-slate-200 bg-white px-5 text-sm font-bold text-slate-700 shadow-[0_4px_12px_rgba(15,23,42,0.03)] transition hover:border-violet-200 hover:text-violet-600">
               Explore system
             </a>
-            <Link href="/login" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-violet-600 px-5 text-sm font-bold text-white shadow-xl shadow-violet-500/25 transition hover:-translate-y-0.5">
+            <Link href="/login" className="inline-flex min-h-11 w-48 items-center justify-center gap-2 rounded-full bg-violet-600 px-5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(124,58,237,0.13)] transition hover:-translate-y-0.5">
               Run demo <ArrowRight size={16} />
             </Link>
           </div>
@@ -207,7 +207,7 @@ export default function LandingPage() {
         <HeroDashboardImage />
       </section>
 
-      <section id="product" className="landing-reveal relative z-10 bg-transparent pb-2 pt-16 sm:pb-6 sm:pt-24">
+      <section id="product" className="landing-reveal relative z-10 bg-transparent pt-24 sm:pt-32">
         <div className="mx-auto grid max-w-5xl items-start gap-12 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr]">
           <div className="landing-reveal order-1 text-center sm:text-left">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-violet-600">What this system is</p>
@@ -229,7 +229,7 @@ export default function LandingPage() {
               <div className="absolute -right-5 top-16 hidden h-28 w-28 rounded-full border border-violet-100 sm:block" />
               <div className="absolute -bottom-4 left-8 hidden h-20 w-44 rounded-full border border-violet-100 sm:block" />
 
-              <div className="relative overflow-hidden rounded-[1.8rem] border border-slate-100 bg-white/95 shadow-[0_28px_80px_rgba(76,69,132,0.13)] backdrop-blur-sm">
+              <div className="relative overflow-hidden rounded-[1.8rem] border border-slate-100 bg-white/95 shadow-[0_12px_30px_rgba(76,69,132,0.07)] backdrop-blur-sm">
                 <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
                   <div className="flex items-center gap-3">
                     <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-600 text-white">
@@ -252,7 +252,7 @@ export default function LandingPage() {
                         <span
                           key={title}
                           className={`landing-reveal landing-delay-${(index % 5) + 1} flex h-10 w-10 items-center justify-center rounded-xl ${
-                            index === 4 ? 'bg-violet-600 text-white shadow-lg shadow-violet-500/25' : 'bg-white text-slate-500 shadow-sm'
+                            index === 4 ? 'bg-violet-600 text-white shadow-[0_8px_18px_rgba(124,58,237,0.12)]' : 'bg-white text-slate-500 shadow-[0_4px_12px_rgba(15,23,42,0.03)]'
                           }`}
                           aria-label={title}
                         >
@@ -265,7 +265,7 @@ export default function LandingPage() {
                   <div className="p-4 sm:p-5">
                     <div className="grid grid-cols-3 gap-3">
                       {PRODUCT_CONNECTIONS.slice(0, 3).map(({ icon: Icon, title, metric }, index) => (
-                        <div key={title} className={`landing-reveal landing-delay-${index + 1} rounded-2xl border border-slate-100 bg-white p-3 shadow-sm`}>
+                        <div key={title} className={`landing-reveal landing-delay-${index + 1} rounded-2xl border border-slate-100 bg-white p-3 shadow-[0_4px_12px_rgba(15,23,42,0.03)]`}>
                           <div className="flex items-center justify-between">
                             <Icon size={15} className="text-violet-600" />
                             <span className="text-sm font-bold text-slate-950">{metric}</span>
@@ -308,7 +308,7 @@ export default function LandingPage() {
                         </div>
                       </div>
 
-                      <div className="landing-reveal landing-delay-3 rounded-[1.35rem] border border-slate-100 bg-white p-4 shadow-sm">
+                      <div className="landing-reveal landing-delay-3 rounded-[1.35rem] border border-slate-100 bg-white p-4 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
                         <p className="text-xs font-bold text-slate-950">Today in HR</p>
                         <div className="mt-4 space-y-3">
                           {PRODUCT_CONNECTIONS.slice(3).map(({ icon: Icon, title, detail, metric }) => (
@@ -337,7 +337,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="workflow" className="landing-reveal relative z-10 bg-transparent pb-2 pt-16 sm:pb-24 sm:pt-6">
+      <section id="workflow" className="landing-reveal relative z-10 bg-transparent pt-24 sm:pt-32">
         <div className="landing-reveal mx-auto max-w-5xl px-4 text-center sm:px-6">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-violet-600">The flow of precision</p>
           <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
@@ -345,12 +345,12 @@ export default function LandingPage() {
           </h2>
           <div className="mt-7 grid gap-4 sm:mt-12 md:grid-cols-3">
             {FLOW.map(({ step, title, body, mobileBody, icon: Icon }) => (
-              <div key={step} className="landing-reveal rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-[0_20px_60px_rgba(76,69,132,0.05)] sm:text-left">
+              <div key={step} className="landing-reveal rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-[0_8px_22px_rgba(76,69,132,0.03)] sm:text-left">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold tracking-[0.2em] text-violet-600">{step}</span>
                   <Icon size={21} className="text-violet-500" />
                 </div>
-                <h3 className="mt-5 text-lg font-bold text-slate-950">{title}</h3>
+                <h3 className="mt-2 text-lg font-bold text-slate-950 sm:mt-5">{title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
                   <span className="sm:hidden">{mobileBody}</span>
                   <span className="hidden sm:inline">{body}</span>
@@ -361,7 +361,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-reveal relative z-10 bg-transparent pb-2 pt-16 sm:py-24">
+      <section className="landing-reveal relative z-10 bg-transparent pt-24 sm:pt-32">
         <div className="mx-auto grid max-w-5xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="landing-reveal order-1 text-center sm:text-left lg:order-2">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-violet-600">From chaos to clarity</p>
@@ -393,7 +393,7 @@ export default function LandingPage() {
           </div>
 
           <div className="landing-reveal landing-delay-2 order-2 mx-auto h-[400px] w-[302px] max-w-full overflow-hidden sm:h-auto sm:w-full sm:overflow-visible lg:order-1">
-            <div className="relative w-[520px] max-w-none scale-[0.58] origin-top-left rounded-[1.6rem] border border-slate-100 bg-white/95 p-5 shadow-[0_28px_80px_rgba(76,69,132,0.12)] backdrop-blur-sm sm:mx-auto sm:w-auto sm:max-w-[520px] sm:scale-100">
+            <div className="relative w-[520px] max-w-none scale-[0.58] origin-top-left rounded-[1.6rem] border border-slate-100 bg-white/95 p-5 shadow-[0_12px_30px_rgba(76,69,132,0.065)] backdrop-blur-sm sm:mx-auto sm:w-auto sm:max-w-[520px] sm:scale-100">
               <div className="rounded-[1.2rem] border border-slate-100 bg-slate-50/80 p-4">
                 <div className="mb-4 flex items-center justify-between">
                   <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-500">Unorganized system</span>
@@ -403,7 +403,7 @@ export default function LandingPage() {
                   {UNORGANIZED_ITEMS.map(({ icon: Icon, title, detail, className }, index) => (
                     <div
                       key={title}
-                      className={`landing-reveal landing-delay-${index + 1} rounded-2xl border border-slate-200 bg-white p-3 shadow-sm ${className}`}
+                      className={`landing-reveal landing-delay-${index + 1} rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_4px_12px_rgba(15,23,42,0.03)] ${className}`}
                     >
                       <div className="flex items-center gap-2">
                         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
@@ -420,12 +420,12 @@ export default function LandingPage() {
               </div>
 
               <div className="flex justify-center py-4">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-violet-100 bg-white text-violet-600 shadow-[0_12px_30px_rgba(124,58,237,0.14)]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-violet-100 bg-white text-violet-600 shadow-[0_5px_14px_rgba(124,58,237,0.07)]">
                   <ArrowDown size={19} />
                 </span>
               </div>
 
-              <div className="rounded-[1.2rem] bg-white p-5 shadow-[0_20px_60px_rgba(76,69,132,0.08)]">
+              <div className="rounded-[1.2rem] bg-white p-5 shadow-[0_8px_22px_rgba(76,69,132,0.045)]">
                 <div className="mb-5 flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2">
@@ -465,7 +465,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-reveal relative z-10 bg-transparent pb-2 pt-16 sm:py-24">
+      <section className="landing-reveal relative z-10 bg-transparent pt-24 sm:pt-32">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="landing-reveal mx-auto max-w-2xl text-center">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-violet-600">Benefits</p>
@@ -487,7 +487,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="pricing" className="landing-reveal relative z-10 bg-transparent pb-2 pt-16 sm:py-24">
+      <section id="pricing" className="landing-reveal relative z-10 bg-transparent pt-24 sm:pt-32">
         <div className="landing-reveal mx-auto max-w-5xl px-4 text-center sm:px-6">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-violet-600">Payment plans</p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
@@ -502,7 +502,7 @@ export default function LandingPage() {
             </span>
           </p>
           <div className="mx-auto mt-7 max-w-4xl sm:mt-12">
-            <div className="landing-reveal rounded-2xl border border-violet-200 bg-white p-6 text-center shadow-[0_18px_50px_rgba(15,23,42,0.05)] ring-4 ring-violet-50 sm:p-8 sm:text-left">
+            <div className="landing-reveal rounded-2xl border border-violet-200 bg-white p-6 text-center shadow-[0_8px_22px_rgba(15,23,42,0.03)] ring-4 ring-violet-50 sm:p-8 sm:text-left">
               <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div>
                   <span className="rounded-full bg-violet-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-violet-600">
@@ -527,9 +527,7 @@ export default function LandingPage() {
                         Every business is different. We will walk you through the platform, understand your workflow, and provide a clear, tailored pricing plan.
                       </span>
                     </p>
-                    <Link href="/login" className="mt-5 inline-flex min-h-10 items-center justify-center gap-2 rounded-full bg-violet-600 px-5 text-sm font-bold text-white shadow-lg shadow-violet-500/20 transition hover:-translate-y-0.5">
-                      Book a Demo <ChevronRight size={16} />
-                    </Link>
+                    <DemoInquiryDialog />
                   </div>
                   <p className="mt-4 text-xs leading-6 text-slate-500">
                     Most teams are priced on a per-employee basis, depending on features and scale.
@@ -537,7 +535,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-slate-100 bg-white p-5 text-left shadow-sm">
+                  <div className="rounded-2xl border border-slate-100 bg-white p-5 text-left shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
                     <h4 className="text-sm font-bold text-slate-950">Pricing structure</h4>
                     <ul className="mt-5 space-y-3">
                       {PRICING_STRUCTURE.map((feature) => (
@@ -549,7 +547,7 @@ export default function LandingPage() {
                     </ul>
                   </div>
 
-                  <div className="rounded-2xl border border-slate-100 bg-white p-5 text-left shadow-sm">
+                  <div className="rounded-2xl border border-slate-100 bg-white p-5 text-left shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
                     <h4 className="text-sm font-bold text-slate-950">What is included</h4>
                     <ul className="mt-5 space-y-3">
                       {PRICING_INCLUDES.map((feature) => (
@@ -567,7 +565,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="demo" className="landing-reveal relative z-10 bg-transparent px-4 pb-20 pt-16 sm:px-6 sm:pt-0">
+      <section id="demo" className="landing-reveal relative z-10 bg-transparent px-4 pb-24 pt-24 sm:px-6 sm:pb-32 sm:pt-32">
         <div className="landing-reveal mx-auto max-w-5xl rounded-[1.4rem] bg-[#d8d3e6] px-6 py-14 text-center sm:px-10">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-violet-700">Experience the flow</p>
           <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
@@ -581,7 +579,7 @@ export default function LandingPage() {
               The demo includes sample employees, departments, leave requests, payroll records, payslips, reports, attendance data, and notifications.
             </span>
           </p>
-          <Link href="/login" className="mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-violet-700 px-6 text-sm font-bold text-white shadow-xl shadow-violet-700/20 transition hover:-translate-y-0.5">
+          <Link href="/login" className="mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-violet-700 px-6 text-sm font-bold text-white shadow-[0_8px_20px_rgba(109,40,217,0.12)] transition hover:-translate-y-0.5">
             Try demo <Play size={15} />
           </Link>
         </div>
